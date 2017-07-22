@@ -15,7 +15,7 @@ public class TpsJava8 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("hello word laye diaw");
+        System.out.println("Using Collections");
     }
     
 }
