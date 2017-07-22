@@ -6,6 +6,7 @@
 package tpsjava8;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -18,7 +19,8 @@ public class TpsJava8 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Queue<Personne> q=new LinkedList<>();
+        //Queue<Personne> q=new LinkedList<>();
+        Queue<Personne> q=new PriorityQueue<>();
         q.add(new Personne(3, "Abdoualye Diaw"));
         q.add(new Personne(1, "Yacine Diaw"));
         q.add(new Personne(2, "Fatou Diop"));

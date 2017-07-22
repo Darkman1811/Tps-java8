@@ -9,8 +9,7 @@ package tpsjava8;
  *
  * @author LaptopWin
  */
-class Personne  {
-
+class Personne implements Comparable{
     private int id;
     private String nom;
 
@@ -38,6 +37,15 @@ class Personne  {
         this.nom = nom;
     }
 
- 
-
+    @Override
+    public int compareTo(Object o) {
+        Personne pers=(Personne)o;
+        if(this.id>pers.getId()){
+            return -1;
+        }
+        else{
+            return 1;
+        }
+                }
+    
 }
