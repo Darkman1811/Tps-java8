@@ -30,7 +30,7 @@ public class TpsJava8 {
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
         
-        Double avg=stream.collect(Collectors.averagingInt(n->n.intValue()));
+        int avg=stream.collect(Collectors.summingInt(n->n.intValue()));
         System.out.println(avg);
         
         
