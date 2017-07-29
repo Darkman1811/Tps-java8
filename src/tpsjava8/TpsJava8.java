@@ -8,6 +8,7 @@ package tpsjava8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -21,22 +22,9 @@ public class TpsJava8 {
      */
     public static void main(String[] args) {
         System.out.println("Using Streams");
-        Stream.Builder<String> streamBuilder = Stream.builder();
-        Stream<String> stream = streamBuilder.add("Dakar")
-                .add("Thies")
-                .add("Diourbel")
-                .add("Dakar")
-                .build();
-        String str = stream
-                .distinct()
-                .filter(n -> n.contains("r"))
-                .map(n -> n.concat("e"))
-                .map((n) -> {
-                    System.out.println(n);
-                    return n;
-                })
-                .reduce("", (s1, s2) -> s1.concat(" - ").concat(s2));
-        System.out.println(str);
+        IntStream  stream= IntStream.range(1, 15);
+        stream.forEach(System.out::println);
+        
 
     }
 
