@@ -7,9 +7,11 @@ package tpsjava8;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -30,8 +32,8 @@ public class TpsJava8 {
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
         
-        Long count=stream.collect(Collectors.counting());
-        System.out.println(count);
+        stream.collect(Collectors.minBy(Comparator.naturalOrder())).ifPresent(System.out::println);
+       
         
         
         
