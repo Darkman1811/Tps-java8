@@ -8,6 +8,7 @@ package tpsjava8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -23,21 +24,13 @@ public class TpsJava8 {
      */
     public static void main(String[] args) {
         System.out.println("Using Streams");
-        //IntStream  stream= IntStream.iterate(1, n->n+1);
-        Stream  stream= Stream.generate(new Random()::nextInt).limit(10);        
-       // stream.forEach(System.out::println);
+        Optional<String> str=Optional.ofNullable("Hello");
+        str.ifPresent(System.out::println);
         
-        stream= Stream.generate(new Random()::nextBoolean).limit(10);        
-      //  stream.forEach(System.out::println);
-        
-        stream=Stream.generate(()->{ 
-            Random r=new Random();
-            int Low = 10;
-int High = 100;
-int re = r.nextInt(High-Low) + Low;
-return re;
-                });
- stream.limit(20).forEach(System.out::println);      
+        Optional<String> str2=Optional.ofNullable(null);
+        str2.ifPresent(System.out::println);
+        IntStream.of(1,4,56,6,12,57).filter(n->n%2==1).max().ifPresent(System.out::println);
+        IntStream.of(10,4,56,6,12,58).filter(n->n%2==1).max().ifPresent(System.out::println);
         
     }
 
