@@ -25,6 +25,7 @@ public class TpsJava8 {
                                   .distinct()
                                   .filter(n->n.contains("r"))
                                   .map(n->n.concat("e"))
+                                  .map((n)->{System.out.println(n);return n;})
                                   .reduce("",(s1,s2)->s1.concat(" - ").concat(s2));
        System.out.println(str);                           
          
