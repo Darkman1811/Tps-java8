@@ -24,9 +24,19 @@ public class TpsJava8 {
      */
     public static void main(String[] args) {
         System.out.println("Using Streams");
-        double sum=new Personne().getPersonnes().stream().map(Personne::getAge).reduce(0, Integer::sum);
+        //Ne marche pas parceque le stream renvoyé par le map ne posséde pas l'impementation du reduce avec les 3 paramétres
+        //Integer sum=new Personne().getPersonnes().stream().map(Personne::getAge).reduce(0,(partialSum,personne)->partialSum+personne.getAge() ,Integer::sum);
+        Integer sum=new Personne().getPersonnes().stream().reduce(0,(partialSum,personne)->partialSum+personne.getAge() ,Integer::sum);
+                //The third parameter is never used because this is not a paralelle stream
+                sum=new Personne().getPersonnes().stream().reduce(0,(partialSum,personne)->partialSum+personne.getAge() ,(a,b)->{System.out.println(b);return a+b;});
+                //This time the third parameter is used to combine the results of the differents threads because this is a paralellStream
+                sum=new Personne().getPersonnes().parallelStream().reduce(0,(partialSum,personne)->partialSum+personne.getAge() ,(a,b)->{System.out.println(b);return a+b;});
+                sum=new Personne().getPersonnes().parallelStream().reduce(0,(partialSum,personne)->partialSum+personne.getAge() ,(a,b)->{System.out.println(Thread.currentThread().getName());return a+b;});
+                sum=new Personne().getPersonnes().parallelStream().reduce(0,(partialSum,personne)->{System.out.println(Thread.currentThread().getName());return partialSum+personne.getAge();} ,(a,b)->{System.out.println(Thread.currentThread().getName());return a+b;});
+                
         System.out.println(sum);
          
     }
 
 }
+
