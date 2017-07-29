@@ -24,8 +24,20 @@ public class TpsJava8 {
     public static void main(String[] args) {
         System.out.println("Using Streams");
         //IntStream  stream= IntStream.iterate(1, n->n+1);
-        Stream stream= Stream.generate(Math::random).limit(10);        
-        stream.forEach(System.out::println);
+        Stream  stream= Stream.generate(new Random()::nextInt).limit(10);        
+       // stream.forEach(System.out::println);
+        
+        stream= Stream.generate(new Random()::nextBoolean).limit(10);        
+      //  stream.forEach(System.out::println);
+        
+        stream=Stream.generate(()->{ 
+            Random r=new Random();
+            int Low = 10;
+int High = 100;
+int re = r.nextInt(High-Low) + Low;
+return re;
+                });
+ stream.limit(20).forEach(System.out::println);      
         
     }
 
