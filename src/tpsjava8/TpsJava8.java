@@ -29,9 +29,9 @@ public class TpsJava8 {
       
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
-          IntSummaryStatistics stats=stream.collect(Collectors.summarizingInt(Integer::intValue));
-          System.out.println(stats.getCount()+" - "+stats.getAverage()+" - "+stats.getSum()+" - "+stats.getMax()+" - "+stats.getMin());
-      
+        
+        Double avg=stream.collect(Collectors.averagingInt(n->n.intValue()));
+        System.out.println(avg);
         
         
         
