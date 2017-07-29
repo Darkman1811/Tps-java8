@@ -32,7 +32,7 @@ public class TpsJava8 {
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
         
-        stream.collect(Collectors.minBy(Comparator.naturalOrder())).ifPresent(System.out::println);
+        stream.collect(Collectors.maxBy(Comparator.naturalOrder())).ifPresent(System.out::println);
        
         
         
