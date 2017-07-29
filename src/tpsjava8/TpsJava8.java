@@ -20,15 +20,24 @@ public class TpsJava8 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Using Streams");      
-         String str=Stream.of("Dakar","Thies","Diourbel","Dakar")
-                                  .distinct()
-                                  .filter(n->n.contains("r"))
-                                  .map(n->n.concat("e"))
-                                  .map((n)->{System.out.println(n);return n;})
-                                  .reduce("",(s1,s2)->s1.concat(" - ").concat(s2));
-       System.out.println(str);                           
-         
+        System.out.println("Using Streams");
+        Stream.Builder<String> streamBuilder = Stream.builder();
+        Stream<String> stream = streamBuilder.add("Dakar")
+                .add("Thies")
+                .add("Diourbel")
+                .add("Dakar")
+                .build();
+        String str = stream
+                .distinct()
+                .filter(n -> n.contains("r"))
+                .map(n -> n.concat("e"))
+                .map((n) -> {
+                    System.out.println(n);
+                    return n;
+                })
+                .reduce("", (s1, s2) -> s1.concat(" - ").concat(s2));
+        System.out.println(str);
+
     }
-    
+
 }
