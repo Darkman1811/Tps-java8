@@ -21,14 +21,13 @@ public class TpsJava8 {
      */
     public static void main(String[] args) {
         System.out.println("Using Streams");      
-        List <Integer> numbers=Arrays.asList(1,2,3,4,5);
-        Stream<Integer> st0=numbers.stream();
-        Stream<Integer> st1=st0.filter(n->n%2==1);
-        Stream<Integer> st2=st1.map(n->n*n);
-                       //.reduce(0, Integer::sum);
-       // Integer red=st2.reduce(0,(n1,n2)->n1+n2);  //Seul un des deux peux etre executé sinon on recoit un illegal state exception
-        Integer red=st2.reduce(0, (n1,n2)->n1-n2);
-        System.out.println(red);
+         String str=Stream.of("Dakar","Thies","Diourbel","Dakar")
+                                  .distinct()
+                                  .filter(n->n.contains("r"))
+                                  .map(n->n.concat("e"))
+                                  .reduce("",(s1,s2)->s1.concat(" - ").concat(s2));
+       System.out.println(str);                           
+         
     }
     
 }
