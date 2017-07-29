@@ -22,10 +22,9 @@ public class TpsJava8 {
      */
     public static void main(String[] args) {
         System.out.println("Using Streams");
-        IntStream  stream= IntStream.range(1, 15);
+        //IntStream  stream= IntStream.iterate(1, n->n+1);
+        IntStream  stream= IntStream.iterate(1, n->n+1).limit(400000);
         stream.forEach(System.out::println);
-        
-
     }
 
 }
