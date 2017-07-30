@@ -35,7 +35,7 @@ public class TpsJava8 {
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
         //Map<Integer,Long> mp=stream.collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
-        Map<Boolean,List<Integer>> mp=stream.collect(Collectors.groupingBy(n->n.intValue()>50,Collectors.toList()));
+        Map<Boolean,List<Integer>> mp=stream.collect(Collectors.partitioningBy(n->n.intValue()>50,Collectors.toList()));
         
         System.out.println(mp);
     }
