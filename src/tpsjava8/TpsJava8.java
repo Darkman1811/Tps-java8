@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Random;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -33,10 +34,11 @@ public class TpsJava8 {
       
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
-        String vals=stream.map(n->n.toString()).collect(Collectors.joining(" - ","[","]"));
-        System.out.println(vals);
+        //Map<Integer,Long> mp=stream.collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        Map<Boolean,List<Integer>> mp=stream.collect(Collectors.groupingBy(n->n.intValue()>50,Collectors.toList()));
         
+        System.out.println(mp);
     }
 
-}
+}//(oldValue,newValue)->oldValue>newValue?oldValue:newValue
 
