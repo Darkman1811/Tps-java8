@@ -5,6 +5,7 @@
  */
 package tpsjava8;
 
+import com.sun.jmx.snmp.BerDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -32,14 +33,9 @@ public class TpsJava8 {
       
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
-        //Duplicate Key problem
-        /*Map<Integer,Integer> ma= stream.collect(Collectors.toMap(n->n.intValue(), n->n.intValue()*n.intValue()));
-        ma.forEach((k,v)->System.out.println(k));
-        */
-        //Using a merger to solve duplicate key probleme
-        Map<Integer,Integer> maval= stream.collect(Collectors.toMap(n->n.intValue(), n->n.intValue()*n.intValue(),(oldValue,newValue)->oldValue+newValue));
-        maval.forEach((k,v)->System.out.println(k+" - "+v));
-         
+        String vals=stream.map(n->n.toString()).collect(Collectors.joining(" - ","[","]"));
+        System.out.println(vals);
+        
     }
 
 }
