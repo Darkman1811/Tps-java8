@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Random;
@@ -31,12 +32,13 @@ public class TpsJava8 {
       
                 
         Stream<Integer> stream=Stream.generate(() -> {return new Random().nextInt(100 - 10) + 10;}).limit(2000);
-        
-        stream.collect(Collectors.maxBy(Comparator.naturalOrder())).ifPresent(System.out::println);
-       
-        
-        
-        
+        //Duplicate Key problem
+        /*Map<Integer,Integer> ma= stream.collect(Collectors.toMap(n->n.intValue(), n->n.intValue()*n.intValue()));
+        ma.forEach((k,v)->System.out.println(k));
+        */
+        //Using a merger to solve duplicate key probleme
+        Map<Integer,Integer> maval= stream.collect(Collectors.toMap(n->n.intValue(), n->n.intValue()*n.intValue(),(oldValue,newValue)->oldValue+newValue));
+        maval.forEach((k,v)->System.out.println(k+" - "+v));
          
     }
 
